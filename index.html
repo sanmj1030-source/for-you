@@ -1,0 +1,79 @@
+import tkinter as tk
+import random
+
+# Window
+root = tk.Tk()
+root.title("A Very Important Question ❤️")
+root.geometry("600x450")
+root.configure(bg="#ffe6f0")
+root.resizable(False, False)
+
+# Question
+question = tk.Label(
+    root,
+    text="Do you love me? ❤️",
+    font=("Helvetica", 30, "bold"),
+    bg="#ffe6f0",
+    fg="#d6336c"
+)
+question.pack(pady=70)
+
+# Message
+message = tk.Label(
+    root,
+    text="",
+    font=("Helvetica", 18, "bold"),
+    bg="#ffe6f0",
+    fg="#d6336c"
+)
+message.pack(pady=20)
+
+# YES button
+def yes_clicked():
+    question.config(text="I KNEW IT!!! ❤️🥰")
+    message.config(text="Love youuuuu daviii ummaaaaa! 💕")
+    yes_button.place(x=250, y=280)
+    no_button.place_forget()
+
+yes_button = tk.Button(
+    root,
+    text="YES ❤️",
+    font=("Helvetica", 16, "bold"),
+    bg="#ff4d6d",
+    fg="white",
+    activebackground="#ff4d6d",
+    relief="flat",
+    padx=20,
+    pady=10,
+    command=yes_clicked
+)
+
+# NO button — it runs away!
+def move_no(event=None):
+    max_x = 500
+    max_y = 380
+
+    x = random.randint(50, max_x)
+    y = random.randint(250, max_y)
+
+    no_button.place(x=x, y=y)
+
+no_button = tk.Button(
+    root,
+    text="NO 💔",
+    font=("Helvetica", 16, "bold"),
+    bg="#999999",
+    fg="white",
+    relief="flat",
+    padx=20,
+    pady=10
+)
+
+# Put buttons on screen
+yes_button.place(x=210, y=280)
+no_button.place(x=340, y=280)
+
+# Make NO run away when mouse approaches
+no_button.bind("<Enter>", move_no)
+
+root.mainloop()
